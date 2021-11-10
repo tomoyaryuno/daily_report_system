@@ -23,6 +23,8 @@ public class ReportView {
      */
     private Integer id;
 
+
+
     /**
      * 日報を登録した従業員
      */
@@ -52,4 +54,11 @@ public class ReportView {
      * 更新日時
      */
     private LocalDateTime updatedAt;
+    /**
+     * 評価ボタン
+     */
+    private String goodcountAt;
+
+
+
 }

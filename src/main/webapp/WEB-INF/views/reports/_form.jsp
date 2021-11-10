@@ -30,4 +30,5 @@
 <br /><br />
 <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+<input type="hidden" name="${AttributeConst.GOOD_COUNT_AT.getValue()}" value="${report.goodcountAt}" />
 <button type="submit">投稿</button>

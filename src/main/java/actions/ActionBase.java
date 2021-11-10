@@ -194,6 +194,8 @@ public abstract class ActionBase {
     protected String getRequestParam(AttributeConst key) {
         return request.getParameter(key.getValue());
     }
+    
+    
 
     /**
      * リクエストスコープにパラメータを設定する

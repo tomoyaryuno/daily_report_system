@@ -68,8 +68,8 @@ public class ReportService extends ServiceBase {
         long reports_count = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT, Long.class)
                 .getSingleResult();
         return reports_count;
-    }
 
+    }
     /**
      * idを条件に取得したデータをReportViewのインスタンスで返却する
      * @param id
@@ -153,5 +153,34 @@ public class ReportService extends ServiceBase {
         em.getTransaction().commit();
 
     }
+    public List<String> goodcountAt(ReportView rv) {
 
-}
+        //バリデーションを行う
+        List<String> errors = ReportValidator.validate(rv);
+
+        if (errors.size() == 0) {
+
+
+            goodcountAtInternal(rv);
+        }
+      //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        return errors;
+    }
+        
+        private void goodcountAtInternal(ReportView rv) {
+
+            em.getTransaction().begin();
+            Report r = findOneInternal(rv.getId());
+            ReportConverter.copyViewToModel(r, rv);
+            em.getTransaction().commit();
+
+        }
+    }
+
+
+
+
+
+
+
+

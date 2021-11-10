@@ -13,7 +13,6 @@ import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
 import services.ReportService;
-
 /**
  * 日報に関する処理を行うActionクラス
  *
@@ -112,6 +111,7 @@ public class ReportAction extends ActionBase {
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
                     null,
+                    null,
                     null);
 
             //日報情報登録
@@ -159,6 +159,9 @@ public class ReportAction extends ActionBase {
             //詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);
         }
+
+
+
     }
     /**
      * 編集画面を表示する
@@ -186,6 +189,7 @@ public class ReportAction extends ActionBase {
             //編集画面を表示
             forward(ForwardConst.FW_REP_EDIT);
         }
+
 
     }
     /**
@@ -226,8 +230,41 @@ public class ReportAction extends ActionBase {
 
                 //一覧画面にリダイレクト
                 redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
-
             }
         }
+        }
+        /**
+         * 更新を行う
+         * @throws ServletException
+         * @throws IOException
+         */
+        public void goodcountAt() throws ServletException, IOException {
+
+            //idを条件に日報データを取得する
+            ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+
+            rv.setGoodcountAt(((Integer.valueOf(Integer.parseInt(rv.getGoodcountAt())+1))).toString());
+
+
+
+           //日報データを更新する
+            List<String> errors = service.update(rv);
+
+
+              //更新中にエラーが発生した場合
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+            putRequestScope(AttributeConst.REPORT, rv); //入力された日報情報
+            putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+            redirect(ForwardConst.ACT_REP, (ForwardConst.CMD_INDEX));
+
     }
-}
+
+        }
+
+
+
+
+

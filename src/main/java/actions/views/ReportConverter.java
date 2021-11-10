@@ -17,14 +17,15 @@ public class ReportConverter {
      * @return Reportのインスタンス
      */
     public static Report toModel(ReportView rv) {
-        return new Report(
-                rv.getId(),
-                EmployeeConverter.toModel(rv.getEmployee()),
+        return new Report(rv.getId(),
+                EmployeeConverter.toModel(
+                rv.getEmployee()),
                 rv.getReportDate(),
                 rv.getTitle(),
                 rv.getContent(),
                 rv.getCreatedAt(),
-                rv.getUpdatedAt());
+                rv.getUpdatedAt(),
+                rv.getGoodcountAt());
     }
 
     /**
@@ -38,14 +39,15 @@ public class ReportConverter {
             return null;
         }
 
-        return new ReportView(
-                r.getId(),
-                EmployeeConverter.toView(r.getEmployee()),
+        return new ReportView(r.getId(),
+                EmployeeConverter.toView(
+                r.getEmployee()),
                 r.getReportDate(),
                 r.getTitle(),
                 r.getContent(),
                 r.getCreatedAt(),
-                r.getUpdatedAt());
+                r.getUpdatedAt(),
+                r.getGoodcountAt());
     }
 
     /**
@@ -76,6 +78,7 @@ public class ReportConverter {
         r.setContent(rv.getContent());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
+        r.setGoodcountAt(rv.getGoodcountAt());
 
     }
 
@@ -91,6 +94,7 @@ public class ReportConverter {
         rv.setTitle(r.getTitle());
         rv.setCreatedAt(r.getCreatedAt());
         rv.setUpdatedAt(r.getUpdatedAt());
+        rv.setGoodcountAt(r.getGoodcountAt());
     }
 
 }

@@ -39,6 +39,7 @@ public interface JpaConst {
     String REP_COL_CONTENT = "content"; //日報の内容
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
+    String REP_COL_GOOD_COUNT_AT = "good_count_At"; //
 
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
@@ -74,5 +75,7 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
-
+    //指定した
+    String Q_REP_GOOD_COUNT = ENTITY_REP + ".good count";
+    String Q_REP_COL_GOOD_COUNT_AT_DEF = "UPDATE report SET good_count_AT = good_count_AT + 1;"+ JPQL_PARM_EMPLOYEE;
 }

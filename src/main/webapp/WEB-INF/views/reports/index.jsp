@@ -7,6 +7,7 @@
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
+<c:set var="commgc" value="${ForwardConst.CMD_GOODCOUNT.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -16,6 +17,7 @@
             </div>
         </c:if>
         <h2>日報　一覧</h2>
+         <FORM method=POST action='JdbcUpdate.jsp'>
         <table id="report_list">
             <tbody>
                 <tr>
@@ -23,6 +25,7 @@
                     <th class="report_date">日付</th>
                     <th class="report_title">タイトル</th>
                     <th class="report_action">操作</th>
+                    <th class="good_count_At">評価ボタン</th>
                 </tr>
                 <c:forEach var="report" items="${reports}" varStatus="status">
                     <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
@@ -32,10 +35,11 @@
                         <td class="report_date"><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
                         <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a></td>
-                    </tr>
+                        <td class="good_count_At"><a href="<c:url value='?action=${actRep}&command=${commgc}&id=${report.id}'/>">${report.goodcountAt}</a></td>
                 </c:forEach>
             </tbody>
         </table>
+        </FORM>
 
         <div id="pagination">
             （全 ${reports_count} 件）<br />
