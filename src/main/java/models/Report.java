@@ -57,6 +57,12 @@ public class Report {
     private Integer id;
 
     /**
+     * いいね評価
+     */
+    @Column(name = JpaConst.REP_COL_GOOD_COUNT_AT, nullable = false)
+    private Integer goodcountAt;
+
+    /**
      * 日報を登録した従業員
      */
     @ManyToOne
@@ -93,10 +99,6 @@ public class Report {
      */
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
-    /**
-     * いいね評価
-     */
-    @Column(name = JpaConst.REP_COL_GOOD_COUNT_AT, nullable = false)
-    private String goodcountAt;
+
 
 }

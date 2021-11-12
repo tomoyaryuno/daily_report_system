@@ -18,14 +18,14 @@ public class ReportConverter {
      */
     public static Report toModel(ReportView rv) {
         return new Report(rv.getId(),
+                rv.getGoodcountAt(),
                 EmployeeConverter.toModel(
                 rv.getEmployee()),
                 rv.getReportDate(),
                 rv.getTitle(),
                 rv.getContent(),
                 rv.getCreatedAt(),
-                rv.getUpdatedAt(),
-                rv.getGoodcountAt());
+                rv.getUpdatedAt());
     }
 
     /**
@@ -40,14 +40,15 @@ public class ReportConverter {
         }
 
         return new ReportView(r.getId(),
+                r.getGoodcountAt(),
                 EmployeeConverter.toView(
                 r.getEmployee()),
                 r.getReportDate(),
                 r.getTitle(),
                 r.getContent(),
                 r.getCreatedAt(),
-                r.getUpdatedAt(),
-                r.getGoodcountAt());
+                r.getUpdatedAt());
+
     }
 
     /**
@@ -72,13 +73,14 @@ public class ReportConverter {
      */
     public static void copyViewToModel(Report r, ReportView rv) {
         r.setId(rv.getId());
+        r.setGoodcountAt(rv.getGoodcountAt());
         r.setEmployee(EmployeeConverter.toModel(rv.getEmployee()));
         r.setReportDate(rv.getReportDate());
         r.setTitle(rv.getTitle());
         r.setContent(rv.getContent());
         r.setCreatedAt(rv.getCreatedAt());
         r.setUpdatedAt(rv.getUpdatedAt());
-        r.setGoodcountAt(rv.getGoodcountAt());
+
 
     }
 
@@ -89,12 +91,13 @@ public class ReportConverter {
      */
     public static void copyModelToView(Report r, ReportView rv) {
         rv.setId(r.getId());
+        rv.setGoodcountAt(r.getGoodcountAt());
         rv.setEmployee(EmployeeConverter.toView(r.getEmployee()));
         rv.setReportDate(r.getReportDate());
         rv.setTitle(r.getTitle());
         rv.setCreatedAt(r.getCreatedAt());
         rv.setUpdatedAt(r.getUpdatedAt());
-        rv.setGoodcountAt(r.getGoodcountAt());
+
     }
 
 }

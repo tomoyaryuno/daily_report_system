@@ -75,6 +75,7 @@ public class ReportAction extends ActionBase {
         //日報情報の空インスタンスに、日報の日付＝今日の日付を設定する
         ReportView rv = new ReportView();
         rv.setReportDate(LocalDate.now());
+
         putRequestScope(AttributeConst.REPORT, rv); //日付のみ設定済みの日報インスタンス
 
         //新規登録画面を表示
@@ -102,15 +103,29 @@ public class ReportAction extends ActionBase {
 
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+            /**
+             * 文字列を数値に変換する
+             * @param strNumber 変換前文字列
+             * @return 変換後数値
+             */
 
             //パラメータの値をもとに日報情報のインスタンスを作成する
+            String agc = getRequestParam(AttributeConst.GOOD_COUNT_AT);
+
+                int gc = 0;
+                try {
+                    gc = Integer.parseInt(agc);
+                } catch (Exception e) {
+                }
+
+
             ReportView rv = new ReportView(
                     null,
+                    gc,
                     ev, //ログインしている従業員を、日報作成者として登録する
                     day,
                     getRequestParam(AttributeConst.REP_TITLE),
                     getRequestParam(AttributeConst.REP_CONTENT),
-                    null,
                     null,
                     null);
 
@@ -138,6 +153,7 @@ public class ReportAction extends ActionBase {
             }
         }
     }
+
     /**
      * 詳細画面を表示する
      * @throws ServletException
@@ -244,7 +260,9 @@ public class ReportAction extends ActionBase {
             ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
 
-            rv.setGoodcountAt(((Integer.valueOf(Integer.parseInt(rv.getGoodcountAt())+1))).toString());
+            rv.setGoodcountAt(((Integer.valueOf(rv.getGoodcountAt())+1)));
+
+
 
 
 

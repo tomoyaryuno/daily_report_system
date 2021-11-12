@@ -23,6 +23,11 @@ public class ReportView {
      */
     private Integer id;
 
+    /**
+     * 評価ボタン
+     */
+    private Integer goodcountAt;
+
 
 
     /**
@@ -54,10 +59,7 @@ public class ReportView {
      * 更新日時
      */
     private LocalDateTime updatedAt;
-    /**
-     * 評価ボタン
-     */
-    private String goodcountAt;
+
 
 
 
